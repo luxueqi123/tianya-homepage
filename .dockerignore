@@ -1,0 +1,11 @@
+.next
+node_modules
+deploy
+docs
+tests
+.git
+.env*
+*.log
+tsconfig.tsbuildinfo
+README.md
+AGENTS.md

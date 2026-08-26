@@ -1,0 +1,661 @@
+@property --services-flow-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes services-field-breathe {
+  0%,
+  100% {
+    opacity: 0.48;
+    transform: scale(0.98) translate3d(-1%, 0, 0);
+  }
+
+  50% {
+    opacity: 0.84;
+    transform: scale(1.04) translate3d(1%, -1%, 0);
+  }
+}
+
+@keyframes services-border-flow {
+  to {
+    --services-flow-angle: 360deg;
+  }
+}
+
+@keyframes services-card-breathe {
+  0%,
+  100% {
+    opacity: 0.34;
+    transform: scale(0.92) translate3d(-2%, 2%, 0);
+  }
+
+  50% {
+    opacity: 0.92;
+    transform: scale(1.1) translate3d(2%, -2%, 0);
+  }
+}
+
+@keyframes services-frame-breathe {
+  0%,
+  100% {
+    box-shadow:
+      0 28px 90px rgba(1, 5, 7, 0.44),
+      0 0 22px rgba(var(--service-accent-rgb), 0.12),
+      0 0 58px rgba(var(--service-accent-rgb), 0.045),
+      inset 0 1px 0 rgba(244, 240, 232, 0.07),
+      inset 0 0 26px rgba(var(--service-accent-rgb), 0.025);
+  }
+
+  50% {
+    box-shadow:
+      0 30px 96px rgba(1, 5, 7, 0.5),
+      0 0 38px rgba(var(--service-accent-rgb), 0.3),
+      0 0 92px rgba(var(--service-accent-rgb), 0.11),
+      inset 0 1px 0 rgba(255, 255, 255, 0.11),
+      inset 0 0 42px rgba(var(--service-accent-rgb), 0.07);
+  }
+}
+
+.services-section {
+  isolation: isolate;
+  background:
+    radial-gradient(ellipse 58% 38% at 92% 16%, rgba(159, 232, 208, 0.095), transparent 74%),
+    radial-gradient(ellipse 46% 34% at 4% 88%, rgba(83, 157, 253, 0.065), transparent 74%),
+    linear-gradient(180deg, #050608, #070a0d 48%, #050608);
+}
+
+.services-grain {
+  z-index: 1;
+  opacity: 0.026;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E");
+  mix-blend-mode: soft-light;
+}
+
+.services-field {
+  background:
+    repeating-linear-gradient(90deg, transparent 0 71px, rgba(244, 240, 232, 0.024) 72px),
+    linear-gradient(112deg, transparent 0 46%, rgba(159, 232, 208, 0.035) 50%, transparent 54%);
+  mask-image: radial-gradient(ellipse 92% 76% at 50% 50%, #000 18%, transparent 82%);
+  animation: services-field-breathe 11s ease-in-out infinite;
+}
+
+.services-flare {
+  right: -15rem;
+  top: 16%;
+  width: 34rem;
+  height: 34rem;
+  border-radius: 9999px;
+  background: rgba(159, 232, 208, 0.11);
+  filter: blur(115px);
+}
+
+.services-watermark {
+  pointer-events: none;
+  position: absolute;
+  left: -1.5vw;
+  top: 4.5rem;
+  z-index: 0;
+  margin: 0;
+  user-select: none;
+  white-space: nowrap;
+  color: rgba(244, 240, 232, 0.026);
+  font-family: Arial, sans-serif;
+  font-size: clamp(8rem, 19vw, 19rem);
+  font-weight: 900;
+  letter-spacing: -0.09em;
+  line-height: 0.8;
+}
+
+.services-chapter {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.9rem;
+  color: rgba(244, 240, 232, 0.8);
+  font-size: clamp(1.04rem, 1.5vw, 1.2rem);
+  letter-spacing: 0.08em;
+
+  &::before {
+    content: '';
+    width: 2.75rem;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(159, 232, 208, 0.88), transparent);
+    box-shadow: 0 0 16px rgba(159, 232, 208, 0.34);
+  }
+
+  strong {
+    color: #9fe8d0;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.88rem;
+    letter-spacing: 0.12em;
+  }
+}
+
+.services-row {
+  --service-accent-rgb: 159, 232, 208;
+
+  isolation: isolate;
+  transition:
+    border-color 0.45s ease,
+    box-shadow 0.5s ease,
+    transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+
+  .services-row-content {
+    transform-origin: 50% 54%;
+    transition: transform 0.58s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform;
+  }
+
+  &:hover {
+    border-color: rgba(var(--service-accent-rgb), 0.42);
+    box-shadow:
+      0 34px 100px rgba(1, 5, 7, 0.56),
+      0 0 58px rgba(var(--service-accent-rgb), 0.12),
+      inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    z-index: 2;
+    transform: translateY(-8px) scale(1.012);
+  }
+
+  &:hover .services-row-content {
+    transform: scale(1.018);
+  }
+}
+
+.services-row-image {
+  z-index: 0;
+  opacity: 0.68;
+  object-position: 62% center;
+  filter: saturate(0.92) contrast(1.08) brightness(0.9);
+  transform: scale(1.015);
+  transition:
+    opacity 0.55s ease,
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.55s ease;
+}
+
+.services-row:hover .services-row-image {
+  opacity: 0.82;
+  filter: saturate(1.02) contrast(1.09) brightness(0.96);
+  transform: scale(1.055);
+}
+
+.services-row:nth-child(2) {
+  --service-accent-rgb: 224, 191, 128;
+}
+
+.services-row:nth-child(3) {
+  --service-accent-rgb: 159, 199, 255;
+}
+
+.services-row:nth-child(4) {
+  --service-accent-rgb: 205, 178, 232;
+}
+
+.services-row-pattern {
+  z-index: 0;
+  overflow: hidden;
+  opacity: 0.48;
+  transition:
+    opacity 0.55s ease,
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    pointer-events: none;
+  }
+}
+
+/* 剪辑轨道：横向时间线、片段刻度与柔焦光带。 */
+.services-row:nth-child(1) .services-row-pattern {
+  background:
+    linear-gradient(90deg, transparent 45%, rgba(var(--service-accent-rgb), 0.035) 72%, transparent 100%),
+    radial-gradient(ellipse at 88% 24%, rgba(var(--service-accent-rgb), 0.14), transparent 34%);
+
+  &::before {
+    inset: 12% -8% 10% 48%;
+    opacity: 0.72;
+    background:
+      repeating-linear-gradient(90deg, rgba(var(--service-accent-rgb), 0.16) 0 22px, transparent 22px 30px) 0 30% / 100% 2px no-repeat,
+      repeating-linear-gradient(90deg, rgba(var(--service-accent-rgb), 0.11) 0 46px, transparent 46px 55px) 0 50% / 100% 6px no-repeat,
+      repeating-linear-gradient(90deg, rgba(var(--service-accent-rgb), 0.14) 0 31px, transparent 31px 38px) 0 70% / 100% 3px no-repeat;
+    filter: drop-shadow(0 0 12px rgba(var(--service-accent-rgb), 0.28));
+    transform: perspective(420px) rotateY(-14deg) rotateZ(-3deg);
+  }
+
+  &::after {
+    right: 7%;
+    top: 18%;
+    width: 4rem;
+    height: 4rem;
+    border: 1px solid rgba(var(--service-accent-rgb), 0.18);
+    border-radius: 50%;
+    box-shadow:
+      0 0 0 12px rgba(var(--service-accent-rgb), 0.025),
+      0 0 32px rgba(var(--service-accent-rgb), 0.12);
+  }
+}
+
+/* 稿纸与版式网格：保留文字区，纹理只落在右侧暗面。 */
+.services-row:nth-child(2) .services-row-pattern {
+  &::before {
+    top: 12%;
+    right: -4%;
+    width: 48%;
+    height: 76%;
+    border: 1px solid rgba(var(--service-accent-rgb), 0.16);
+    border-radius: 10px;
+    background:
+      linear-gradient(90deg, rgba(var(--service-accent-rgb), 0.13) 0 1px, transparent 1px) 18% 0 / 1px 100% no-repeat,
+      repeating-linear-gradient(0deg, transparent 0 16px, rgba(var(--service-accent-rgb), 0.11) 16px 17px);
+    box-shadow:
+      -18px 18px 0 -1px rgba(11, 12, 18, 0.7),
+      -18px 18px 0 0 rgba(var(--service-accent-rgb), 0.08),
+      0 26px 70px rgba(var(--service-accent-rgb), 0.08);
+    transform: rotate(5deg);
+  }
+
+  &::after {
+    right: 9%;
+    bottom: 14%;
+    width: 25%;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(var(--service-accent-rgb), 0.62), transparent);
+    box-shadow: 0 0 18px rgba(var(--service-accent-rgb), 0.34);
+    transform: rotate(-9deg);
+  }
+}
+
+/* 网站空间：浏览器层叠框架与节点网格。 */
+.services-row:nth-child(3) .services-row-pattern {
+  background:
+    linear-gradient(rgba(var(--service-accent-rgb), 0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(var(--service-accent-rgb), 0.055) 1px, transparent 1px),
+    radial-gradient(circle at 88% 18%, rgba(var(--service-accent-rgb), 0.16), transparent 31%);
+  background-position: right top;
+  background-size: 34px 34px, 34px 34px, auto;
+  mask-image: linear-gradient(90deg, transparent 38%, #000 72%);
+
+  &::before,
+  &::after {
+    right: 5%;
+    width: 42%;
+    height: 36%;
+    border: 1px solid rgba(var(--service-accent-rgb), 0.17);
+    border-radius: 9px;
+    box-shadow: 0 18px 48px rgba(0, 0, 0, 0.24);
+  }
+
+  &::before {
+    top: 18%;
+    transform: translate(-14%, 22%) rotate(-4deg);
+  }
+
+  &::after {
+    top: 15%;
+    background: linear-gradient(180deg, rgba(var(--service-accent-rgb), 0.08) 0 18%, transparent 18%);
+    transform: rotate(3deg);
+    box-shadow:
+      inset 0 0 28px rgba(var(--service-accent-rgb), 0.035),
+      0 22px 56px rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* 产品结构：模块节点、流程拓扑与暖金结构线。 */
+.services-row:nth-child(4) .services-row-pattern {
+  background:
+    radial-gradient(circle, rgba(var(--service-accent-rgb), 0.3) 0 1.5px, transparent 1.8px) 68% 18% / 31px 31px,
+    radial-gradient(ellipse at 86% 22%, rgba(var(--service-accent-rgb), 0.15), transparent 34%);
+  mask-image: linear-gradient(90deg, transparent 35%, #000 72%);
+
+  &::before {
+    right: 8%;
+    top: 18%;
+    width: 38%;
+    height: 52%;
+    background:
+      linear-gradient(32deg, transparent 48.8%, rgba(var(--service-accent-rgb), 0.2) 49%, rgba(var(--service-accent-rgb), 0.2) 50%, transparent 50.2%),
+      linear-gradient(148deg, transparent 48.8%, rgba(var(--service-accent-rgb), 0.14) 49%, rgba(var(--service-accent-rgb), 0.14) 50%, transparent 50.2%);
+    filter: drop-shadow(0 0 10px rgba(var(--service-accent-rgb), 0.2));
+  }
+
+  &::after {
+    right: 19%;
+    top: 30%;
+    width: 3.6rem;
+    height: 3.6rem;
+    border: 1px solid rgba(var(--service-accent-rgb), 0.34);
+    border-radius: 14px;
+    background: rgba(var(--service-accent-rgb), 0.045);
+    box-shadow:
+      -78px 58px 0 -13px rgba(var(--service-accent-rgb), 0.11),
+      74px 72px 0 -17px rgba(var(--service-accent-rgb), 0.1),
+      0 0 34px rgba(var(--service-accent-rgb), 0.15);
+    transform: rotate(45deg);
+  }
+}
+
+.services-row:hover .services-row-pattern {
+  opacity: 0.72;
+  transform: scale(1.025);
+}
+
+.services-row-light {
+  z-index: 0;
+  opacity: 0.88;
+  background:
+    radial-gradient(circle at 12% 8%, rgba(var(--service-accent-rgb), 0.16), transparent 38%),
+    linear-gradient(90deg, rgba(6, 9, 13, 0.96) 0%, rgba(6, 9, 13, 0.78) 46%, rgba(6, 9, 13, 0.36) 78%, rgba(6, 9, 13, 0.2) 100%),
+    linear-gradient(180deg, rgba(5, 8, 12, 0.15), rgba(5, 8, 12, 0.78));
+  transition: opacity 0.45s ease;
+}
+
+.services-row:hover .services-row-light {
+  opacity: 0.78;
+}
+
+.services-row-icon {
+  color: rgb(var(--service-accent-rgb));
+  border: 1px solid rgba(var(--service-accent-rgb), 0.35);
+  background: rgba(var(--service-accent-rgb), 0.1);
+  box-shadow:
+    inset 0 0 22px rgba(var(--service-accent-rgb), 0.09),
+    0 0 30px rgba(var(--service-accent-rgb), 0.13);
+  transition:
+    transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.45s ease;
+}
+
+.services-row:hover .services-row-icon {
+  box-shadow:
+    inset 0 0 24px rgba(var(--service-accent-rgb), 0.14),
+    0 0 38px rgba(var(--service-accent-rgb), 0.24);
+  transform: rotate(-5deg) scale(1.06);
+}
+
+.services-card-index,
+.services-card-label,
+.services-card-promise {
+  color: rgb(var(--service-accent-rgb));
+  text-shadow: 0 0 22px rgba(var(--service-accent-rgb), 0.22);
+}
+
+.services-card-index {
+  opacity: 0.86;
+  font-size: 0.9rem;
+}
+
+.services-card-label {
+  opacity: 0.94;
+}
+
+.services-flow-frame {
+  --service-accent-rgb: 159, 232, 208;
+
+  isolation: isolate;
+  border: 1px solid rgba(var(--service-accent-rgb), 0.3);
+  background:
+    linear-gradient(155deg, rgba(18, 24, 31, 0.96), rgba(7, 10, 14, 0.98)),
+    #090c10;
+  animation: services-frame-breathe 5.2s ease-in-out infinite;
+  animation-delay: var(--services-flow-delay, 0s);
+
+  &::before {
+    content: '';
+    pointer-events: none;
+    position: absolute;
+    z-index: 3;
+    inset: 0;
+    padding: 2px;
+    border-radius: inherit;
+    background: conic-gradient(
+      from var(--services-flow-angle),
+      transparent 0deg,
+      transparent 48deg,
+      rgba(var(--service-accent-rgb), 0.16) 72deg,
+      rgba(var(--service-accent-rgb), 0.72) 108deg,
+      rgba(var(--service-accent-rgb), 1) 132deg,
+      rgba(255, 255, 255, 1) 148deg,
+      rgba(var(--service-accent-rgb), 0.92) 166deg,
+      rgba(var(--service-accent-rgb), 0.3) 202deg,
+      transparent 246deg,
+      transparent 360deg
+    );
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    filter:
+      drop-shadow(0 0 6px rgba(255, 255, 255, 0.5))
+      drop-shadow(0 0 13px rgba(var(--service-accent-rgb), 0.78));
+    animation: services-border-flow 6.4s linear infinite;
+    animation-delay: var(--services-flow-delay, 0s);
+  }
+
+  &::after {
+    content: '';
+    pointer-events: none;
+    position: absolute;
+    inset: -18%;
+    z-index: 0;
+    border-radius: inherit;
+    background:
+      radial-gradient(circle at 18% 18%, rgba(var(--service-accent-rgb), 0.28), transparent 48%),
+      radial-gradient(circle at 82% 78%, rgba(var(--service-accent-rgb), 0.17), transparent 52%);
+    filter: blur(34px);
+    animation: services-card-breathe 5.2s ease-in-out infinite;
+    animation-delay: var(--services-flow-delay, 0s);
+  }
+}
+
+.services-invitation-mark {
+  text-shadow: 0 0 24px rgba(159, 232, 208, 0.5);
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.services-contact {
+  --site-flow-delay: -2.6s;
+  --site-flow-rgb: 7, 193, 96;
+
+  position: relative;
+  z-index: 10;
+  display: inline-flex;
+  min-height: 4.25rem;
+  min-width: 19.5rem;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 0.85rem;
+  overflow: hidden;
+  border: 1px solid rgba(7, 193, 96, 0.3);
+  border-radius: 1.15rem;
+  background:
+    radial-gradient(circle at 8% 15%, rgba(7, 193, 96, 0.15), transparent 42%),
+    rgba(7, 14, 20, 0.9);
+  padding: 0.7rem 0.85rem;
+  color: #eef5f7;
+  cursor: pointer;
+  box-shadow: inset 0 1px 0 rgba(244, 240, 232, 0.06);
+  text-align: left;
+  transition:
+    transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.35s ease,
+    background-color 0.35s ease;
+
+  &:hover {
+    border-color: rgba(159, 232, 208, 0.48);
+    transform: translateY(-3px);
+  }
+
+  &:focus-visible {
+    outline: 2px solid rgba(159, 232, 208, 0.92);
+    outline-offset: 4px;
+  }
+}
+
+.services-contact-icon {
+  position: relative;
+  z-index: 5;
+  display: inline-flex;
+  width: 2.8rem;
+  height: 2.8rem;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(7, 193, 96, 0.38);
+  border-radius: 9999px;
+  background: rgba(7, 193, 96, 0.11);
+  color: #07c160;
+  box-shadow:
+    0 0 24px rgba(7, 193, 96, 0.2),
+    inset 0 0 18px rgba(7, 193, 96, 0.06);
+
+  svg {
+    width: 1.8rem;
+    height: 1.8rem;
+    filter: drop-shadow(0 0 8px rgba(7, 193, 96, 0.36));
+  }
+}
+
+.services-contact-copy {
+  position: relative;
+  z-index: 5;
+  display: grid;
+  min-width: 0;
+  gap: 0.15rem;
+
+  span {
+    color: #aebfc8;
+    font-size: 0.66rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+  }
+
+  strong {
+    color: #eef5f7;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.92rem;
+    letter-spacing: 0.045em;
+    white-space: nowrap;
+  }
+}
+
+.services-contact-action {
+  position: relative;
+  z-index: 5;
+  display: inline-flex;
+  min-width: 4.25rem;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.34rem;
+  margin-left: auto;
+  color: #9fe8d0;
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+
+  svg {
+    width: 0.9rem;
+    height: 0.9rem;
+  }
+}
+
+.services-invitation:hover .services-invitation-mark {
+  transform: translate(5px, 5px);
+}
+
+[data-section][data-section-active='false'] {
+  .services-field,
+  .services-flow-frame,
+  .services-flow-frame::before,
+  .services-flow-frame::after {
+    animation-play-state: paused !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .services-chapter {
+    gap: 0.72rem;
+    font-size: 1.08rem;
+
+    &::before {
+      width: 2.25rem;
+    }
+
+    strong {
+      font-size: 0.92rem;
+    }
+  }
+
+  .services-watermark {
+    left: -16vw;
+    top: 5rem;
+  }
+
+  .services-flare {
+    right: -22rem;
+  }
+
+  .services-row:hover {
+    transform: none;
+  }
+
+  .services-row:hover .services-row-content {
+    transform: none;
+  }
+
+  .services-row-image,
+  .services-row:hover .services-row-image {
+    opacity: 0.64;
+    object-position: 64% center;
+    filter: saturate(0.92) contrast(1.08) brightness(0.86);
+    transform: scale(1.02);
+  }
+
+  .services-row-light,
+  .services-row:hover .services-row-light {
+    opacity: 0.92;
+    background:
+      radial-gradient(circle at 12% 8%, rgba(var(--service-accent-rgb), 0.17), transparent 36%),
+      linear-gradient(90deg, rgba(6, 9, 13, 0.96) 0%, rgba(6, 9, 13, 0.82) 58%, rgba(6, 9, 13, 0.46) 100%),
+      linear-gradient(180deg, rgba(5, 8, 12, 0.08), rgba(5, 8, 12, 0.82));
+  }
+
+  .services-card-copy {
+    font-size: 0.9375rem;
+    line-height: 1.9;
+    text-wrap: pretty;
+  }
+
+  .services-card-label {
+    font-size: 0.7rem;
+  }
+
+  .services-card-index {
+    font-size: 0.92rem;
+  }
+
+  .services-contact {
+    width: 100%;
+    min-width: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .services-field,
+  .services-flow-frame,
+  .services-flow-frame::before,
+  .services-flow-frame::after {
+    animation: none !important;
+  }
+
+  .services-row:hover,
+  .services-row:hover .services-row-content,
+  .services-row:hover .services-row-icon,
+  .services-invitation:hover .services-invitation-mark,
+  .services-contact:hover {
+    transform: none;
+  }
+}

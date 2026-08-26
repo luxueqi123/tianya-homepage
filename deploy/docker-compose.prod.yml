@@ -1,0 +1,33 @@
+name: tianya-homepage
+
+services:
+  homepage:
+    image: ${TIANYA_HOMEPAGE_IMAGE:-tianya-homepage:latest}
+    container_name: tianya-homepage
+    restart: unless-stopped
+    init: true
+    environment:
+      NODE_ENV: production
+      NEXT_TELEMETRY_DISABLED: "1"
+      NEXT_PUBLIC_SITE_URL: https://my.tianyaguanxue.com
+      HOSTNAME: 0.0.0.0
+      PORT: "3000"
+      SITE_DATA_DIR: /app/data
+    volumes:
+      - /opt/tianya-homepage/data:/app/data
+    networks:
+      - tianya-homepage-net
+    healthcheck:
+      test:
+        - CMD
+        - node
+        - -e
+        - fetch('http://127.0.0.1:3000/api/wall').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+
+networks:
+  tianya-homepage-net:
+    external: true

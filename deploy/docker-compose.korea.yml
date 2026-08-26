@@ -1,0 +1,56 @@
+name: tianya-homepage-korea
+
+services:
+  homepage:
+    image: ${TIANYA_HOMEPAGE_IMAGE:-tianya-homepage:20260826-095537}
+    container_name: tianya-homepage
+    restart: unless-stopped
+    init: true
+    environment:
+      NODE_ENV: production
+      NEXT_TELEMETRY_DISABLED: "1"
+      NEXT_PUBLIC_SITE_URL: https://my.tianyaguanxue.com
+      HOSTNAME: 0.0.0.0
+      PORT: "3000"
+      SITE_DATA_DIR: /app/data
+    volumes:
+      - /opt/tianya-homepage/data:/app/data
+    networks:
+      - web
+    healthcheck:
+      test:
+        - CMD
+        - node
+        - -e
+        - fetch('http://127.0.0.1:3000/api/wall').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+
+  nginx:
+    image: nginx:1.29-alpine
+    container_name: tianya-homepage-nginx
+    restart: unless-stopped
+    depends_on:
+      homepage:
+        condition: service_healthy
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /opt/tianya-homepage/nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf:ro
+      - /opt/tianya-homepage/acme:/usr/share/nginx/html:ro
+      - /etc/letsencrypt:/etc/letsencrypt:ro
+    networks:
+      - web
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://127.0.0.1/healthz"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+networks:
+  web:
+    name: tianya-homepage-net
