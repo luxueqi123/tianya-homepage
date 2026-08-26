@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState, type CSSProperties } from 'react';
+import Image from 'next/image';
 
 import { cn } from '@/lib/utils';
 
@@ -29,12 +30,12 @@ function Card({ card, className, flowIndex }: { card: CardItem; className?: stri
       )}
       style={{ '--site-flow-delay': `${flowIndex * -0.7}s` } as CSSProperties}
     >
-      <img
+      <Image
         src={card.url}
         alt={card.title}
-        loading="lazy"
-        decoding="async"
-        className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+        fill
+        sizes="(max-width: 767px) 260px, 400px"
+        className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
       />
       <div className="absolute inset-0 bg-black/28" />
     </div>

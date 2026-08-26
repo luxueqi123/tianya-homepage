@@ -254,7 +254,7 @@ export function Milestone() {
                       src={item.image}
                       alt=""
                       fill
-                      sizes="(min-width: 1200px) 270px, (min-width: 640px) 44vw, 88vw"
+                      sizes="(max-width: 899px) calc(100vw - 76px), 300px"
                     />
                   )}
                   <Image
@@ -266,7 +266,7 @@ export function Milestone() {
                     src={item.image}
                     alt=""
                     fill
-                    sizes="(min-width: 1200px) 270px, (min-width: 640px) 44vw, 88vw"
+                    sizes="(max-width: 899px) calc(100vw - 76px), 300px"
                   />
                   <span aria-hidden className="milestone-journey__image-shade" />
                     </>

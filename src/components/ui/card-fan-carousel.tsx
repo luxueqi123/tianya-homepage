@@ -4,6 +4,7 @@ import { useState, useEffect, useRef, useCallback, type CSSProperties } from "re
 import gsap from "gsap";
 import { useReducedMotion } from "motion/react";
 import { ChevronLeft, ChevronRight, Mouse, MoveHorizontal } from "lucide-react";
+import Image from "next/image";
 
 export interface CardItem {
   imgUrl: string;
@@ -335,7 +336,13 @@ export default function SocialCards({ cards, emptyLabel }: SocialCardsProps) {
           {cards.map((card, index) => {
             const image = (
               <div className="relative w-full h-full overflow-hidden">
-                <img src={card.imgUrl} loading="lazy" decoding="async" alt={card.alt || `Card ${index}`} className="absolute inset-0 w-full h-full object-cover z-10" />
+                <Image
+                  src={card.imgUrl}
+                  alt={card.alt || `Card ${index}`}
+                  fill
+                  sizes="(max-width: 479px) 116px, (max-width: 639px) 144px, (max-width: 767px) 168px, (max-width: 1023px) 208px, 256px"
+                  className="object-cover z-10"
+                />
                 <span aria-hidden className="fan-card-grade" />
               </div>
             );

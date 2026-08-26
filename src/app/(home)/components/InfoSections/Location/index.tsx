@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import Image from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { HiOutlineMapPin } from 'react-icons/hi2';
@@ -57,12 +58,12 @@ export function Location() {
       className="relative min-h-[100svh] overflow-hidden"
     >
       <div ref={mapRef} className="absolute inset-[-6%] will-change-transform">
-        <iframe
-          title="惠州地图"
-          loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
-          src="https://www.openstreetmap.org/export/embed.html?bbox=114.05%2C22.85%2C114.75%2C23.37&amp;layer=mapnik&amp;marker=23.1115%2C114.4152"
-          className="location-map h-full w-full border-0 grayscale-[0.7] brightness-[0.55] contrast-[1.2] saturate-[0.35]"
+        <Image
+          src="/maps/huizhou-network.svg"
+          alt="惠州城市脉络图"
+          fill
+          sizes="100vw"
+          className="location-map object-cover opacity-90"
         />
       </div>
 

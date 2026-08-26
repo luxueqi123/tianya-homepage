@@ -2,7 +2,7 @@ name: tianya-homepage-korea
 
 services:
   homepage:
-    image: ${TIANYA_HOMEPAGE_IMAGE:-tianya-homepage:20260826-095537}
+    image: ${TIANYA_HOMEPAGE_IMAGE:-tianya-homepage:20260826-172040}
     container_name: tianya-homepage
     restart: unless-stopped
     init: true

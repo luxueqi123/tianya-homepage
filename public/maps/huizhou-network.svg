@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+  <title id="title">惠州城市脉络图</title>
+  <desc id="desc">以深色道路、水系与坐标网格构成的惠州抽象城市地图</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#071013"/>
+      <stop offset=".48" stop-color="#0b1114"/>
+      <stop offset="1" stop-color="#12100d"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop stop-color="#78ceb1" stop-opacity=".19"/>
+      <stop offset="1" stop-color="#78ceb1" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="80" height="80" patternUnits="userSpaceOnUse">
+      <path d="M80 0H0V80" fill="none" stroke="#b7d8d0" stroke-opacity=".055"/>
+      <circle cx="0" cy="0" r="1.5" fill="#cfe8e2" fill-opacity=".12"/>
+    </pattern>
+    <filter id="soft"><feGaussianBlur stdDeviation="10"/></filter>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#bg)"/>
+  <rect width="1600" height="1000" fill="url(#grid)"/>
+  <ellipse cx="810" cy="500" rx="520" ry="420" fill="url(#glow)"/>
+  <path d="M-80 800C170 720 260 785 430 700S690 600 840 640s260 180 430 115 250-140 410-122v430H-80Z" fill="#0a2630" fill-opacity=".75"/>
+  <path d="M-40 817C180 732 278 806 445 714S692 614 842 653s267 175 433 113 244-132 370-119" fill="none" stroke="#6ec4d3" stroke-opacity=".22" stroke-width="3"/>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M-40 450C160 415 252 495 413 474s238-163 410-132 236 150 415 110 273-173 430-111" stroke="#d2aa70" stroke-opacity=".33" stroke-width="6"/>
+    <path d="M122 106C252 235 354 289 516 330s275 28 414 150 238 221 548 264" stroke="#d2aa70" stroke-opacity=".28" stroke-width="5"/>
+    <path d="M1530 109C1324 189 1222 235 1091 344S898 543 741 585 407 581 128 689" stroke="#a5d7ca" stroke-opacity=".25" stroke-width="4"/>
+    <path d="M322 20C353 183 427 252 552 376s180 224 242 423" stroke="#a5d7ca" stroke-opacity=".19" stroke-width="3"/>
+    <path d="M906 10C862 180 871 270 915 386s102 203 64 397" stroke="#a5d7ca" stroke-opacity=".18" stroke-width="3"/>
+    <path d="M1320 20C1259 153 1198 238 1142 364s-41 263 30 428" stroke="#a5d7ca" stroke-opacity=".16" stroke-width="3"/>
+    <path d="M92 260C343 282 503 256 694 183s363-79 621-28" stroke="#d9e8e4" stroke-opacity=".1" stroke-width="2"/>
+    <path d="M43 596C265 564 438 637 615 695s362 92 598 40" stroke="#d9e8e4" stroke-opacity=".1" stroke-width="2"/>
+  </g>
+  <g fill="#cbe9e0" fill-opacity=".38">
+    <circle cx="413" cy="474" r="4"/><circle cx="552" cy="376" r="4"/><circle cx="741" cy="585" r="4"/>
+    <circle cx="915" cy="386" r="4"/><circle cx="1091" cy="344" r="4"/><circle cx="1172" cy="792" r="4"/>
+  </g>
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace" letter-spacing="4" fill="#d9ebe6">
+    <text x="92" y="94" font-size="17" fill-opacity=".42">HUANAN · 23.1115°N / 114.4152°E</text>
+    <text x="1260" y="915" font-size="15" fill-opacity=".26">URBAN NETWORK / HUIZHOU</text>
+  </g>
+  <circle cx="810" cy="500" r="52" fill="#7ed7ba" fill-opacity=".05" filter="url(#soft)"/>
+</svg>

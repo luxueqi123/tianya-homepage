@@ -48,6 +48,9 @@ const MUSIC_BOOTSTRAP_SCRIPT = `(() => {
   void attempt();
 
   const unlock = (event) => {
+    if (event.type === 'pointerdown'
+      && event.target instanceof Element
+      && event.target.closest('[data-music-player]')) return;
     if (!audio.src || !audio.paused) return;
     audio.play().then(() => {
       delete audio.dataset.autoplayBlocked;
@@ -354,6 +357,11 @@ export function MusicProvider({ children }: { children: ReactNode }) {
     if (!urlError.includes('浏览器阻止了自动播放')) return;
 
     const unlockOnFirstInteraction = (event: PointerEvent | KeyboardEvent) => {
+      if (
+        event instanceof PointerEvent
+        && event.target instanceof Element
+        && event.target.closest('[data-music-player]')
+      ) return;
       const audio = audioRef.current;
       if (audio?.src && audio.paused) void attemptAudioPlay(audio);
     };
